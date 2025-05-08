@@ -33,7 +33,8 @@ describe('applyOperator', () => {
 
   it('should throw error for invalid operators', () => {
     const stack = [3, 4];
-    expect(() => applyOperator('invalid', stack)).toThrowError("Invalid operator: invalid");
+    const invalid = "&"
+    expect(() => applyOperator(invalid, stack)).toThrowError(`Invalid operator "${invalid}"`);
   });
 
   it('should throw error when there are not enough values on the stack', () => {

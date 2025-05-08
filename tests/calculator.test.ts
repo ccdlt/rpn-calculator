@@ -6,20 +6,20 @@ describe('evaluateTokens', () => {
     const tokens = [3, 4, '+'];
     const stack: number[] = [];
     const result = evaluateTokens(tokens, stack);
-    expect(result).toEqual([7]); // 3 + 4 = 7
+    expect(result).toEqual([7]);
   });
 
   it('should handle multiple operations in sequence', () => {
     const tokens = [3, 4, '+', 2, '*'];
     const stack: number[] = [];
     const result = evaluateTokens(tokens, stack);
-    expect(result).toEqual([14]); // (3 + 4) * 2 = 14
+    expect(result).toEqual([14]);
   });
 
   it('should throw error for invalid token', () => {
-    const tokens = [3, 4, 'invalid'];
+    const tokens = [3, 4, '&'];
     const stack: number[] = [];
-    expect(() => evaluateTokens(tokens, stack)).toThrowError("Invalid operator: invalid");
+    expect(() => evaluateTokens(tokens, stack)).toThrowError(`Invalid operator "&"`);
   });
 
   it('should throw error if there are insufficient operands', () => {
