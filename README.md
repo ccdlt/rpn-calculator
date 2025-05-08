@@ -69,12 +69,12 @@ Get started by typing a numerical value
 rpn-calculator/
 │
 ├── cli/
-│   ├── index.ts           # CLI entry point with Commander
-│   └── interactive.ts     # Core REPL loop with readline
+│   ├── index.ts           # cli entry point with commander.js
+│   └── interactive.ts     # core REPL loop with readline
 │
 ├── src/
-│   ├── calculator.ts      # Stack evaluation logic
-│   ├── operations.ts      # Operator handling
+│   ├── calculator.ts      # stack calculation logic, controller
+│   ├── operations.ts      # operator handling
 │   └── utils/
 │       ├── index.ts
 │       └── types.ts
@@ -101,7 +101,7 @@ rpn-calculator/
 ### Install & Run
 
 ```bash
-git clone https://github.com/yourusername/rpn-calculator.git
+git clone https://github.com/ccdlt/rpn-calculator.git
 cd rpn-calculator
 npm install
 npm start
