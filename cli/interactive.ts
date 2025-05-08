@@ -29,16 +29,16 @@ export function runInteractiveSession() {
       evaluateTokens(tokens, stack);
       const last = stack[stack.length - 1];
 
-      console.log(chalk.magenta('\n(top ↓):'));
-      [...stack].reverse().forEach(val => {
-        console.log(chalk.yellow(`[${val}]`));
-      });
-
       if (tokens.length === 1 && isNaN(Number(tokens[0]))) {
         console.log(chalk.green(`✔ Result: ${last}`));
       } else {
         console.log(chalk.green(`✔ Pushed: ${tokens.join(', ')}`));
       }
+
+      console.log(chalk.magenta('\n(top ↓):'));
+      [...stack].reverse().forEach(val => {
+        console.log(chalk.yellow(`[${val}]`));
+      });
     } catch (err: any) {
       console.log(chalk.red(`Error: ${err.message}`));
     }
