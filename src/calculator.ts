@@ -2,10 +2,12 @@ import { applyOperator } from './operations';
 
 export function evaluateTokens(tokens: (string | number)[], stack: number[]): number[] {
   for (const token of tokens) {
-    if (typeof token === "number") {
-      stack.push(token);
+    const val = typeof token === "number" ? token : parseFloat(token);
+
+    if (!isNaN(val)) {
+      stack.push(val);
     } else {
-      const result = applyOperator(token, stack);
+      const result = applyOperator(String(token), stack);
       stack.push(result);
     }
   }
