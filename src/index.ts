@@ -32,8 +32,9 @@ const handleInput = (line: string) => {
 
   try {
     evaluateTokens(tokens, stack);
-    if (stack.length) {
-      console.log(stack.join(" "));
+    const top = stack[stack.length - 1];
+    if (top !== undefined) {
+      console.log(top);
     }
   } catch (err: any) {
     console.error(`Error: ${err.message}`);
