@@ -28,8 +28,12 @@ export function runInteractiveSession() {
     try {
       evaluateTokens(tokens, stack);
       const last = stack[stack.length - 1];
+      const containsOperator = tokens.some(token => isNaN(Number(token)));
+      const isSingleOperator = tokens.length === 1 && containsOperator;
 
-      if (tokens.length === 1 && isNaN(Number(tokens[0]))) {
+      if (isSingleOperator) {
+        console.log(chalk.green(`✔ Result: ${last}`));
+      } else if (containsOperator) {
         console.log(chalk.green(`✔ Result: ${last}`));
       } else {
         console.log(chalk.green(`✔ Pushed: ${tokens.join(', ')}`));
