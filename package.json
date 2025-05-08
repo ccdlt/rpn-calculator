@@ -1,0 +1,24 @@
+{
+  "name": "rpn-calculator",
+  "version": "1.0.0",
+  "description": "A CLI Reverse Polish Notation calculator in TypeScript",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
+  "scripts": {
+    "start": "ts-node src/cli.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/cli.ts",
+    "test": "vitest run"
+  },
+  "keywords": ["rpn", "calculator", "cli", "typescript"],
+  "author": "Sierra Wendt",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.1"
+  }
+}
