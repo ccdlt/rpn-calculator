@@ -1,32 +1,52 @@
+import readline from 'readline';
 import chalk from 'chalk';
-import inquirer from 'inquirer';
 import { evaluateTokens } from '../src/calculator';
 
 const stack: number[] = [];
 
-export async function runInteractiveSession() {
-  console.log(chalk.green('Welcome to the interactive RPN calculator!\n(Type `q` to quit)\n'));
+export function runInteractiveSession() {
+  console.log(chalk.greenBright('Welcome to RPN Calculator \nGet started by typing a numerical value \n(type `q` to quit)\n'));
 
-  while (true) {
-    const { input } = await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'input',
-        message: '> ',
-      },
-    ]);
+  const rdln = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    prompt: chalk.blueBright('> ')
+  });
 
-    if (input.toLowerCase() === 'q') {
-      console.log(chalk.blue('\nGoodbye!'));
-      process.exit(0);
+  rdln.prompt();
+
+  rdln.on('line', (line) => {
+    const input = line.trim();
+    if (input === 'q') {
+      console.log(chalk.cyan('\n👋 Goodbye!\n'));
+      rdln.close();
+      return;
     }
 
-    const tokens = input.trim().split(/\s+/);
+    const tokens = input.split(/\s+/);
+
     try {
       evaluateTokens(tokens, stack);
-      console.log(chalk.magenta('Stack:'), chalk.yellow(JSON.stringify(stack)));
-    }  catch (err: any) {
-      console.log(chalk.red(`${err.message}`));
+      const last = stack[stack.length - 1];
+
+      console.log(chalk.magenta('\n(top ↓):'));
+      [...stack].reverse().forEach(val => {
+        console.log(chalk.yellow(`[${val}]`));
+      });
+
+      if (tokens.length === 1 && isNaN(Number(tokens[0]))) {
+        console.log(chalk.green(`✔ Result: ${last}`));
+      } else {
+        console.log(chalk.green(`✔ Pushed: ${tokens.join(', ')}`));
+      }
+    } catch (err: any) {
+      console.log(chalk.red(`Error: ${err.message}`));
     }
-  }
+
+    rdln.prompt();
+  });
+
+  rdln.on('close', () => {
+    process.exit(0);
+  });
 }
