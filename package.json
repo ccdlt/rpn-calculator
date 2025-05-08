@@ -20,7 +20,6 @@
   "license": "MIT",
   "devDependencies": {
     "@types/figlet": "^1.7.0",
-    "@types/inquirer": "^9.0.8",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
@@ -31,7 +30,6 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^13.1.0",
-    "figlet": "^1.8.1",
-    "inquirer": "^12.6.0"
+    "figlet": "^1.8.1"
   }
 }
